@@ -10,6 +10,7 @@ pipeline {
             steps {
                 sh "wget -qO- https://binaries.cockroachdb.com/cockroach-v19.2.6.linux-amd64.tgz | tar  xvz"
                 sh "sudo cp -i cockroach-v19.2.6.linux-amd64/cockroach /usr/local/bin/"
+                sh "NODO1 is ${params.Nodo1}"
             }  
         }
         stage('Inicio Nodos') {
