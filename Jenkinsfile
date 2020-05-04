@@ -15,6 +15,7 @@ pipeline {
         stage('Inicio Nodos') {
             steps {
                 sh "sudo mkdir /home/ignacio/cockroach"
+                sh "cd /home/ignacio/cockroach"
                 sh "cockroach start --insecure --listen-addr=${params.NODO1}:26257 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO1}:8081 --store=/home/ignacio/cockroach/cockroach-data-1 --background"
                 sh "cockroach start --insecure --listen-addr=${params.NODO2}:26258 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO2}:8082 --store=/home/ignacio/cockroach/cockroach-data-2 --background"
                 sh "cockroach start --insecure --listen-addr=${params.NODO3}:26259 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO3}:8083 --store=/home/ignacio/cockroach/cockroach-data-3 --background"
@@ -23,7 +24,7 @@ pipeline {
         stage('Inicio Cluster') {
             steps {
                 sh "cockroach init --host ${params.NODO1}:26257 --insecure"
-                sh "sleep 30"
+                sh "sleep 15"
             }  
         }    
         stage('Validación Funcionamiento') {
