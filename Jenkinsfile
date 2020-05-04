@@ -28,7 +28,7 @@ pipeline {
         }    
         stage('Validación Funcionamiento') {
             steps {
-                sh "cockroach node status"
+                sh "cockroach node status --insecure"
                 sh "cockroach sql --insecure -e 'SHOW databases;'"
             }  
         }  
