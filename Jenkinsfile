@@ -14,9 +14,9 @@ pipeline {
         }
         stage('Inicio Nodos') {
             steps {
-                sh "cockroach start --insecure --listen-addr=${params.NODO1}:26257 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO1}:8080 --store=cockroach-data-1 --background"
-                sh "cockroach start --insecure --listen-addr=${params.NODO2}:26258 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO2}:8081 --store=cockroach-data-2 --background"
-                sh "cockroach start --insecure --listen-addr=${params.NODO3}:26259 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO3}:8082 --store=cockroach-data-3 --background"
+                sh "cockroach start --insecure --listen-addr=${params.NODO1}:26257 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO1}:8081 --store=cockroach-data-1 --background"
+                sh "cockroach start --insecure --listen-addr=${params.NODO2}:26258 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO2}:8082 --store=cockroach-data-2 --background"
+                sh "cockroach start --insecure --listen-addr=${params.NODO3}:26259 --join=${params.NODO1}:26257,${params.NODO2}:26258,${params.NODO3}:26259 --http-addr=${params.NODO3}:8083 --store=cockroach-data-3 --background"
             }   
         }  
         stage('Inicio Cluster') {
